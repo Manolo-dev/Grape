@@ -1,0 +1,26 @@
+{
+  "name": "grape",
+  "displayName": "Grape",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "grape",
+      "aliases": ["grape"],
+      "extensions": [".grp", ".grape", ".grap"],
+      "firstLine": "^--!grape$",
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "grape",
+      "scopeName": "source.grape",
+      "path": "./syntaxes/grape.tmLanguage.json"
+    }]
+  }
+}
