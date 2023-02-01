@@ -1,3 +1,54 @@
+---
+marp: true
+---
+
+<style>
+:root { --monokai-background: #272822; --monokai-current-line: #44475a; --monokai-foreground: #F8F8F2; --monokai-comment: #75715E; --monokai-red: #F92672; --monokai-orange: #FD971F; --monokai-yellow: #E6DB74; --monokai-green: #A6E22E; --monokai-cyan: #66D9EF; --monokai-purple: #AE81FF; --monokai-pink: #E69F66; --color-border-default: #F8F8F2; }
+
+section {
+  background-color: var(--monokai-background);
+  color: var(--monokai-foreground);
+}
+
+pre {
+  background: var(--monokai-background);
+  color: var(--monokai-foreground);
+}
+
+table, tr, th, td {
+  background: var(--monokai-background);
+  color: var(--monokai-foreground);
+}
+
+h1 { color: var(--monokai-red); }
+h2 { color: var(--monokai-orange); }
+h3 { color: var(--monokai-yellow); }
+h4 { color: var(--monokai-green); }
+h5 { color: var(--monokai-cyan); }
+h6 { color: var(--monokai-purple); }
+a  { color: var(--monokai-pink); }
+
+span[red] { color: var(--monokai-red); }
+span[orange] { color: var(--monokai-orange); }
+span[yellow] { color: var(--monokai-yellow); }
+span[green] { color: var(--monokai-green); }
+span[cyan] { color: var(--monokai-cyan); }
+span[purple] { color: var(--monokai-purple); }
+span[comment] { color: var(--monokai-comment); }
+span[i] { font-style: italic }
+
+pre code {
+  display: block;
+  overflow-x: auto;
+  padding: 10px;
+  background: var(--monokai-background);
+  -webkit-text-size-adjust: none;
+}
+
+pre code *::selection, .hljs::selection { background: var(--monokai-current-line) !important; } .hljs { color: var(--monokai-foreground); } .hljs-string { color: var(--monokai-yellow); } .hljs-number { color: var(--monokai-purple) !important; } .hljs-title { color: var(--monokai-red) !important; } .hljs-built_in { color: var(--monokai-cyan) !important; } .hljs-keyword { color: var(--monokai-red) !important; } .hljs-params { color: var(--monokai-orange); } .hljs-comment { color: var(--monokai-comment); } .hljs-function > .hljs-keyword { color: var(--monokai-cyan) !important; font-style: italic; }
+
+</style>
+
 # Grape
 
 ## Qu'est-ce que Grape ?
