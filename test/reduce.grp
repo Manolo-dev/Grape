@@ -1,0 +1,6 @@
+reduce <- [ Fun ( Any Any ) List Any Int ] := foo xs i => { i
+    | len xs - 2 => foo xs::i xs::(i+1)
+    | foo xs::i reduce &foo xs i+1
+    }
+
+operator /. <- [ Fun ( Any Any ) List Any ] := foo xs => reduce &foo xs 0

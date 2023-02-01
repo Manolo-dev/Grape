@@ -1,0 +1,149 @@
+<expr_cast> ::= <expr_assign> | <expr>;
+
+<expr_assign> ::= '(' <expr_assign> ')'
+    | <expr0>
+    | <var_name> '=' <expr_assign>
+    | <var_name> '+=' <expr_assign>
+    | <var_name> '-=' <expr_assign>
+    | <var_name> '*=' <expr_assign>
+    | <var_name> '/=' <expr_assign>
+    | <var_name> '//=' <expr_assign>
+    | <var_name> '%=' <expr_assign>
+    | <var_name> '**=' <expr_assign>
+    | <var_name> '&=' <expr_assign>
+    | <var_name> '->' <expr_assign>
+    | <var_name> '<-' <expr_assign>
+    ;
+
+<expr0> ::= '(' <expr0> ')'
+    | <expr1>
+    | <expr1> 'or' <expr0>
+    | <expr1> 'and' <expr0>
+    | <expr1> 'xor' <expr0>
+    | 'not' <expr0>
+    ;
+
+<expr1> ::= '(' <expr1> ')'
+    | <expr2>
+    | <expr2> '==' <expr1>
+    | <expr2> '!=' <expr1>
+    | <expr2> '<' <expr1>
+    | <expr2> '>' <expr1>
+    | <expr2> '<=' <expr1>
+    | <expr2> '>=' <expr1>
+    ;
+
+<expr2> ::= '(' <expr2> ')'
+    | <expr3>
+    | <expr3> '::' <expr2>
+    ;
+
+<expr3> ::= '(' <expr3> ')'
+    | <expr4>
+    | <expr4> '..' <expr3>
+    | <expr4> '..:' <expr3>
+    | <expr4> ':..' <expr3>
+    | <expr4> ':..:' <expr3>
+    ;
+
+<expr4> ::= '(' <expr4> ')'
+    | <expr5>
+    | <expr5> '+' <expr4>
+    | <expr5> '-' <expr4>
+    ;
+
+<expr5> ::= '(' <expr5> ')'
+    | <expr6>
+    | <expr6> '*' <expr5>
+    | <expr6> '/' <expr5>
+    | <expr6> '%' <expr5>
+    ;
+
+<expr6> ::= '(' <expr6> ')'
+    | <expr7>
+    | <expr7> '**' <expr6>
+    ;
+
+<expr7> ::= '(' <expr7> ')'
+    | <expr8>
+    | '&' <expr7>
+    ;
+
+<expr8> ::= '(' <expr8> ')'
+    | <expr>
+    | <expr> '/.'  <expr8>
+    | <expr> './'  <expr8>
+    | <expr> '/..' <expr8>
+    | <expr> '..\' <expr8>
+    | <expr> '\'   <expr8>
+    | <expr> '\\'  <expr8>
+    | <expr> '\.'  <expr8>
+    | <expr> '.\'  <expr8>
+    | <expr> '\..' <expr8>
+    | <expr> '..\' <expr8>
+    | <expr> '^'   <expr8>
+    | <expr> '<>'  <expr8>
+    | <expr> '</>' <expr8>
+    | <expr> '<\>' <expr8>
+    | <expr> '<.>' <expr8>
+    | <expr> '<:>' <expr8>
+    | <expr> '<*>' <expr8>
+    | <expr> '<=>' <expr8>
+    | <expr> '<~>' <expr8>
+    | <expr> '<->' <expr8>
+    ;
+
+<expr> ::= '(' <expr> ')'
+    | <function_call>
+    | <var_name>
+    | <int>
+    | <float>
+    | <string>
+    | <char>
+    ;
+
+<instructions> ::= <expr_cast>
+    | '(' { <instructions> } ')'
+    | <structure_if>
+    | <structure_else>
+    | <structure_while>
+    | <structure_loop>
+    | <structure_for>
+    | <structure_match>
+    | <structure_lambda>
+    | <structure_function>
+    | <structure_let>
+    ;
+
+<operator_name> ::= 'operator' ( 'or' | 'and' | 'xor' | 'not' | '==' | '!=' | '<' | '>' | '<=' | '>=' | '::' | '..' | '..:' | ':..' | ':..:' | '+' | '-' | '%' | '*' | '/' | '//' | '**' | '/.' |'./' |'/..' |'..\' |'\' |'\\' |'\.' |'.\' |'\..' |'..\' |'^' |'<>' |'</>' |'<\>' |'<.>' |'<:>' |'<*>' |'<=>' |'<~>' |'<->' );
+
+<comprehensive_list> ::= '[' <expr> '|' <var> 'in' <iterator> [ '|' <condition> [ '|' <expr> ] ] ] ] ']';
+
+<structure_if> ::= 'if' <condition> <instructions>;
+
+<structure_else> ::= <structure_if> 'else' <instructions>;
+
+<structure_while> ::= 'while' <condition> <instructions>;
+
+<structure_loop> ::= 'loop' <num> <instructions>;
+
+<structure_for> ::= 'for' <var> 'in' <iterator> <instructions>;
+
+<structure_match> ::= '{' <expr> ( { '|' <expr> '=>' <instructions> } | <instructions> ) '}';
+
+<function_name> ::= <operator_name> | <var_name> | '...' | '~'';
+
+<list> ::= '[' { [ <expr> ] } ']';
+
+<check_all_type> ::= <list>;
+
+<structure_lambda> ::= <check_all_type> [ ':=' { [ '&' ] <var_name> } ] '=>' <instructions>;
+
+<structure_function> ::= <function_name> '<-' <structure_lambda>;
+
+<function_call> ::= <function_name>
+    | <function_name> { <expr> }
+    | <function_name> { <expr> } ';'
+    ;
+
+(* <structure_raisin> ::= '$$' <raisin> '$$'; *)

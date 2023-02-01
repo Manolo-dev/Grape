@@ -1,0 +1,15 @@
+logn <- [ Int Int ] := n a => (
+    k = 0
+    m = a
+    while m > 1 (
+        k = k + 1
+        m = m // n
+    )
+    k
+)
+
+log2 <- ~ logn 2;
+
+tolist <- [ ... Int ] := a => (
+    a
+)

@@ -1,51 +1,51 @@
 --!grape
 import std
 
-maximumCount <- ( List Int ) := xs => 
+maximumCount <- [ List Int ] := xs => 
     max len [ x | x in xs : x<0 ]
         len [ x | x in xs : x>0 ];
 
-operator or <- ( Fun Fun ) := & C1 & C2 =>
-    ( Any ) := x => C1 x or C2 x
+operator or <- [ Fun Fun ] := & C1 & C2 =>
+    [ Any ] := x => C1 x or C2 x
 
-operator and <- ( Fun Fun ) := & C1 & C2 =>
-    ( Any ) := x => C1 x and C2 x
+operator and <- [ Fun Fun ] := & C1 & C2 =>
+    [ Any ] := x => C1 x and C2 x
 
-operator not <- ( Fun ) := & C =>
-    ( Any ) := x => not C x
+operator not <- [ Fun ] := & C =>
+    [ Any ] := x => not C x
 
-operator + <- ( List Any List Any ) := xs ys =>
+operator + <- [ List Any List Any ] := xs ys =>
     [ xs::i | i in 0..(len xs + len ys) | i < len xs | ys::(i - len xs) ]
 
 [ 0 1 2 ] + [ 3 4 5 ] -- [ 0 1 2 3 4 5 ]
 
-foo <- ( List (Int or Float) List (Int or Float) ) := a b =>
+foo <- [ List (Int or Float) List (Int or Float) ] := a b =>
     a + b
 
 foo [ 1 2 3 ] [ 4.0 5.0 6.0 ] -- [ 1 2 3 4.0 5.0 6.0 ]
 
-fibo <- (Int) := n => {n<2
+fibo <- [ Int ] := n => {n<2
     | 1 => n
     | fibo (n-2) + fibo (n-1)
     }
 
 fibo 10 -- 55
 
-sum <- ( List Int ) := xs => {xs
+sum <- [ List Int ] := xs => {xs
     | [ ] => 0
     | xs::0 + xs::(1..len xs)
     }
 
 sum [ 1 2 3 4 5 ] -- 15
 
-prod <- ( List Int ) := xs => {xs
+prod <- [ List Int ] := xs => {xs
     | [ ] => 1
     | xs::0 * xs::(1..len xs)
     }
 
 prod [ 1 2 3 4 5 ] -- 120
 
-sort <- ( List Int ) := xs =>
+sort <- [ List Int ] := xs =>
     for i in 0..len xs - 1
         for j in 0..len xs - i - 1
             if xs::j > xs::(j+1) (
@@ -56,7 +56,7 @@ sort <- ( List Int ) := xs =>
 
 sort [ 5 4 3 2 1 ] -- [ 1 2 3 4 5 ]
 
-merge <- ( Sorted Int Sorted Int ) := xs ys => {xs ys
+merge <- [ Sorted Int Sorted Int ] := xs ys => {xs ys
     | [ ] ys => ys
     | xs [ ] => xs
     | xs::0 < ys::0 => [ xs::0 ] + merge (xs::(1..len xs)) ys
@@ -66,7 +66,7 @@ merge <- ( Sorted Int Sorted Int ) := xs ys => {xs ys
 
 merge [ 1 2 4 5 ] [ 2 3 6 7 8 ] -- [ 1 2 2 3 4 5 6 7 8 ]
 
-merge_sort <- ( List Int ) := xs => {len xs
+merge_sort <- [ List Int ] := xs => {len xs
     | 0 => [ ]
     | 1 => xs
     | merge

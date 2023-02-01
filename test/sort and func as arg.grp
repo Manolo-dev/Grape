@@ -1,0 +1,15 @@
+sort <- [ List Int ] := xs =>
+    for i in 0..(len xs - 1)
+        for j in 0..(len xs - i - 1)
+            if xs::j > xs::(j+1) (
+                temp = xs::(j+1)
+                xs::(j+1) = xs::j
+                xs::j = temp
+            )
+    xs
+
+foo <- [ List Int ] := tab => [ tab::i | i in (len tab - 1)..0 ]
+
+fox <- [ Fun [ List Int ] Fun [ List Int ] List Int ) := sort foo tab => foo sort tab
+
+fox &sort &foo [ 1 2 3 0 9 ] -- [ 9 3 2 1 0 ]

@@ -1,6 +1,6 @@
 -- 1
 
-sont_chiffres_decroissants <- ( Int ) := n => {n < 10
+sont_chiffres_decroissants <- [ Int ] := n => {n < 10
     | 1 => n
     | n % 10 <= (n // 10) % 10 and sont_chiffres_decroissants (n // 10)
     }
@@ -11,7 +11,7 @@ sont_chiffres_decroissants 221 -- 1
 
 -- 2
 
-etendue <- ( List Int ) := xs => (
+etendue <- [ List Int ] := xs => (
     mn = xs::0
     mx = xs::0
     for x in xs (
@@ -26,7 +26,7 @@ etendue <- ( List Int ) := xs => (
 
 etendue [ 30 20 10 20 30 40] -- 30
 
-etendue_sans_invalides <- ( List Int ) := xs => (
+etendue_sans_invalides <- [ List Int ] := xs => (
     mx = xs::0
     for x in xs (
         if x > mn and x < 60
@@ -46,7 +46,7 @@ etendue_sans_invalides [ 30 20 10 1024 20 30 40 99 ] -- 30
 
 -- 3
 
-ecreter_invalides <- ( Tuple Int ( List Any or None ) ( List Any or None ); ) := tuple => (
+ecreter_invalides <- [ Tuple [ Int ( List Any or None ) ( List Any or None ) ] ] := tuple => (
     if abs tuple::0 >= 100
         tuple::0 = 0
     tuple::1 = ecreter_invalides tuple::1
@@ -59,7 +59,7 @@ ecreter_invalides [ 408 [ 5 ] [ -123 ] ] -- [ 0 [ 5 ] [ 0 ] ]
 
 -- 4
 
-partitionner_pairs_impairs <- ( Tuple Int ( List Any or None ); ) := tuple => (
+partitionner_pairs_impairs <- [ Tuple [ Int ( List Any or None ) ] ] := tuple => (
     if tuple == None
         ret = [ [ ] [ ] ]
     else
